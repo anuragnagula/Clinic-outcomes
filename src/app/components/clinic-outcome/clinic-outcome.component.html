@@ -1,0 +1,38 @@
+<app-toggle-duration (durationSelected)="onDurationChange($event)"></app-toggle-duration>
+
+<p>
+  Showing {{ (patients$ | async) }} patients from last {{ duration }} of available data
+  from {{ (range$ | async)?.start | date }} - {{ (range$ | async)?.end | date }}
+</p>
+
+<small>
+  <i>Only patients with a minimum of 10 days of SG data are included. Last Updated on {{ (updated$ | async) | date:
+    'short' }}</i>
+</small>
+
+<div class="chart-row">
+  <div *ngIf="(timeInRange$ | async) as timeData">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Time in Range</mat-card-title>
+        <!-- <span class="card-tooltip" matTooltip="Based on standard of care ranges for time in range">
+          <mat-icon>info</mat-icon>
+        </span> -->
+      </mat-card-header>
+      <mat-card-content>
+        <app-time-in-range [data]="timeData"></app-time-in-range>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div *ngIf="(gmi$ | async) as gmiData">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>GMI</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <app-gmi [data]="gmiData"></app-gmi>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -60,5 +60,6 @@ export class ClinicOutcomeComponent implements OnInit {
 
   print() : void {
     // print logic goes here
+    // combineLatest operator can be used to combine observables and prepare the object for the print functionality
   }
 }
